@@ -1,0 +1,8 @@
+# Ignore virtual environment
+virt/
+venv/
+
+# Ignore Python bytecode cache
+__pycache__/
+*.py[cod]
+*$py.class
