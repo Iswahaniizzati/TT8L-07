@@ -42,7 +42,7 @@ class Order(models.Model):
     address = models.CharField(max_length=100, default='',blank=True)
     phone = models.CharField(max_length=20,default='',blank=True)
     date = models.DateField(default=datetime.datetime.today)
-    status = models.BooleanFieald(default=False)
+    status = models.BooleanField(default=False)
 
     def _str_(self):
         return self.product
