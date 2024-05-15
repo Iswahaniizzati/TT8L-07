@@ -3,7 +3,7 @@
 db.sqlite3
 
 # Ignore Python bytecode files
-*.pyc
+.pyc
 __pycache__/
 
 # Ignore virtual environment
