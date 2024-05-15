@@ -3,6 +3,6 @@ virt/
 venv/
 
 # Ignore Python bytecode cache
-_pycache_/
+__pycache__/
 *.py[cod]
 *$py.class
