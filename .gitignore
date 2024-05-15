@@ -1,13 +1,14 @@
-# .gitignore
-# Ignore SQLite database file
-db.sqlite3
-
-# Ignore Python bytecode files
-.pyc
-__pycache__/
-
 # Ignore virtual environment
 virt/
 venv/
 
+# Ignore Python bytecode cache
 __pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore .gitignore
+.gitignore
+
+# Ignore SQLite database file
+db.sqlite3
