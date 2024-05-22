@@ -4,7 +4,7 @@ import datetime
 class Categories(models.Model):
     name = models.CharField(max_length=50)
 
-    def _str_(self):
+    def __str__(self):
         return self.name
     
     class Meta: 
@@ -33,7 +33,7 @@ class Product(models.Model):
     description = models.CharField(max_length=250,default='', blank=True, null=True)
     image = models.ImageField(upload_to='upload/product/')
 
-    def _str_(self):
+    def __str__(self):
         return self.name
 
 
