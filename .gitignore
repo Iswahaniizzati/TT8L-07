@@ -8,4 +8,11 @@ __pycache__/
 *$py.class
 
 # Ignore .gitignore
+<<<<<<< HEAD
 .gitignore
+=======
+.gitignore
+
+# Ignore SQLite database file
+db.sqlite3
+>>>>>>> hani
