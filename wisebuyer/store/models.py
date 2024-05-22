@@ -7,6 +7,9 @@ class Categories(models.Model):
     def _str_(self):
         return self.name
     
+    class Meta: 
+        verbose_name_plural = 'categories'
+    
 
 #Customers
 class Customer(models.Model):
