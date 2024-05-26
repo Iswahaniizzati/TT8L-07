@@ -29,7 +29,7 @@ class Order(models.Model):
     amount_paid = models.DecimalField(max_digits=7, decimal_places=2)
     date_ordered = models.DateTimeField(auto_now_add=True)
     
-    def _str_(self):
+    def __str__(self):
         return f'Order - {str(self.id)}'
 
 #Create Order Items Model
@@ -43,5 +43,5 @@ class OrderItem(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2)
     
     
-    def _str_(self):
+    def __str__(self):
     return f'Order Item - {str(self.id)}'
