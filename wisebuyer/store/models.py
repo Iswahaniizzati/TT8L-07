@@ -23,7 +23,9 @@ def create_profile(sender, instance, created, **kwargs):
     if created:
         user_profile = Profile(user=instance)
         user_profile.save()
-        
+
+#Automate profile
+post_save.connect(create_profile, sender=User)
 
 class Categories(models.Model):
     name = models.CharField(max_length=50)
