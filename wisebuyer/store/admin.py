@@ -1,5 +1,5 @@
 from django.contrib import admin
-from.models import Categories, Customer, Product, Order
+from.models import Categories, Customer, Product, Order, Profile
 from django.contrib.auth.models import User
 
 admin.site.register(Categories)
