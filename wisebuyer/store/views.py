@@ -62,7 +62,7 @@ def logout_user(request):
     return redirect('home')
 
 def register_user(request):
-      form = SignUpForm()
+   
       if request.method == "POST":
           form = SignUpForm(request.POST)
           if form.is_valid():
@@ -71,11 +71,17 @@ def register_user(request):
               password = form.cleaned_data['password1']
               # log in user
               user = authenticate(username=username, password=password)
-              login(request, user)
-              messages.success(request, ("You have registered successfully. Welcome!"))
-              return redirect ('home')
+              if user is not None:
+                login(request, user)
+                messages.success(request, ("You have registered successfully. Welcome!"))
+                return redirect ('home')
+              else: 
+               messages.error(request,"Authentication failed. Please try logging in.")
           else: 
-               messages.success(request, ("Whoops! There was a problem registering,please try again"))
-               return redirect ('register')
+               messages.error(request, ("Whoops! There was a problem registering,please try again"))
+               print(form.errors)
+        
       else:
-            return render(request, 'register.html', {'form':form})
+         form = SignUpForm()
+        
+      return render(request, 'register.html', {'form':form})
