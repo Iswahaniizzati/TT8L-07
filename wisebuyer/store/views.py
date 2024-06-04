@@ -74,7 +74,7 @@ def logout_user(request):
     return redirect('home')
 
 def register_user(request):
-      form = SignUpForm()
+   
       if request.method == "POST":
           form = SignUpForm(request.POST)
           if form.is_valid():
@@ -87,7 +87,10 @@ def register_user(request):
               messages.success(request, ("Username Created - Please Fill Out Your User Info Below..."))
               return redirect ('update_info')
           else: 
-               messages.success(request, ("Whoops! There was a problem registering,please try again"))
-               return redirect ('register')
+               messages.error(request, ("Whoops! There was a problem registering,please try again"))
+               print(form.errors)
+        
       else:
-            return render(request, 'register.html', {'form':form})
+         form = SignUpForm()
+        
+      return render(request, 'register.html', {'form':form})

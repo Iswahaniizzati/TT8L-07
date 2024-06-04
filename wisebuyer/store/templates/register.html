@@ -17,10 +17,43 @@
             
             
                 <br><br/>
-<form method="POST" action="{% url 'register' %}">
+<form method="POST" action="{% url 'register' %}"id="registerForm">
     {% csrf_token %}
 
-    {{ form.as_p}}
+    <div class="form-group">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        {% for error in form.username.errors %}
+            <div class="error text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group">
+        {{ form.email.label_tag }}
+        {{ form.email }}
+        {% for error in form.email.errors %}
+            <div class="error text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group">
+        {{ form.password1.label_tag }}
+        {{ form.password1 }}
+        {% for error in form.password1.errors %}
+            <div class="error text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group">
+        {{ form.password2.label_tag }}
+        {{ form.password2 }}
+        {% for error in form.password2.errors %}
+            <div class="error text-danger">{{ error }}</div>
+        {% endfor %}
+    </div>
+
+
+
     <br/><br/>
     <button type="submit" class="btn btn-secondary">
         Register
@@ -42,5 +75,5 @@
         </div>
     </div>
 </div>
-
+    
 {% endblock %}
