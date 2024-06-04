@@ -20,8 +20,12 @@ def update_info(request):
         form = UserInfoForm(request.POST or None, instance=current_user)
         #Get User's Shipping Form
         shipping_form = ShippingForm(request.POST or None, instance=shipping_user)
-        if form.is_valid():
+        if form.is_valid() or shipping_form.is_valid():
+            #Save original form
             form.save()
+            #Save shipping form
+            shipping_form.save()
+            
             messages.success(request, "Your Info Has Been Updated!")
             return redirect('home')
         return render(request, "update_info.html", {'form':form, 'shipping_form':shipping_form})
