@@ -8,7 +8,18 @@ from .forms import SignUpForm, UserInfoForm
 from django import forms
 
 def update_info(request):
-    pass
+    if request.user.is_authenticated:
+        current_user = User.objects.get(id=request.user.info
+        form = UpdateInfoForm(request.POST or None, instance=current_user)
+        
+        if form.is_valid():
+            form.save()
+            message.success(request, "Your Info Has Been Updated!")
+            return redirect('home')
+        return render(request, "update_info.html", {'form':form})
+    else:        
+        messages.success(request, "You Must Be Logged In to Access That Page!")
+        return redirect('home')
 
 
 
