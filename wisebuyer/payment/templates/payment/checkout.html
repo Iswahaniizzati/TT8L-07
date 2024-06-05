@@ -20,7 +20,13 @@
                           Order Summary
                         </div>
                         <div class="card-body">
-                            Stuff
+                            {% for product in cart_products %}
+                                {{ product.name }}:
+                                $
+
+                                Quantity:
+
+                            {% endfor %}
                         
                         </div>
                       </div>
