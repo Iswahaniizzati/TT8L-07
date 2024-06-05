@@ -22,7 +22,11 @@
                         <div class="card-body">
                             {% for product in cart_products %}
                                 {{ product.name }}:
-                                $
+                                    {% if product.is_sale %}
+                                        ${{ product.sale_price }}
+                                    {% else %}
+                                        ${{ product.price }}
+                                {% endif %}
 
                                 Quantity:
 
