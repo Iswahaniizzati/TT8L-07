@@ -33,6 +33,9 @@ def update_info(request):
         messages.success(request, "You Must Be Logged In to Access That Page!")
         return redirect('home')
 
+def category_summary(request):
+    categories = Categories.objects.all()
+    return render(request, 'category_summary.html', {"categories":categories})
 
 
 def category(request,foo):
