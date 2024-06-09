@@ -8,6 +8,24 @@ from .forms import SignUpForm, UserInfoForm
 from payment.forms import ShippingForm
 from payment.models import ShippingAddress
 from django import forms
+from django.db.models import Q
+
+
+def search(request):
+     # Determine if they filled out the form
+     if request.method == "POST":
+        searched = request.POST['searched']
+        # Query the products database model
+        searched = Product.objects.filter(Q(name__icontains=searched) | Q(description__icontains=searched))
+        # Test for null
+        if not searched:
+            messages.success(request, "Oops!No Result Found! We're sorry, but it looks like we couldn't find any products matching your search.")
+            return render(request, "search.html", {})
+        else:
+            return render(request, "search.html", {'searched':searched})
+     else:
+        return render(request, "search.html", {})
+    
 
 def update_info(request):
     if request.user.is_authenticated:
