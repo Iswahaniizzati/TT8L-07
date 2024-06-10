@@ -6,7 +6,7 @@ def checkout(request):
     # Get the cart
     cart = Cart(request)
     cart_products = cart.get_prods
-    return render (request, "payment/checkout.html", {"cart_products":cart_products}) #add ", "quantities":quantities, "totals":totals" after variable is defined
+    return render (request, "payment/checkout.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals})
 
 
 
