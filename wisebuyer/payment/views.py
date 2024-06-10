@@ -4,6 +4,17 @@ from payment.forms import ShippingForm
 from payment.models import ShippingAddress
 
 
+def billing_info(request):
+    #Get the cart
+    cart = Cart(request)
+    cart_products = cart.get_prods
+    quantities = cart.get_quants
+    totals = cart.cart_total()
+	
+    shipping_form = request.POST
+    return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_form":shipping_form})
+
+
 def checkout(request):
     # Get the cart
     cart = Cart(request)
