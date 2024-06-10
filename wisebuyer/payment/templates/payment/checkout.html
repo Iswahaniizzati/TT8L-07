@@ -28,7 +28,14 @@
                                         ${{ product.price }}
                                 {% endif %}
 
-                                Quantity:
+                                <br/>
+                                <small>Quantity:
+                                {% for key, value in quantities.items %}
+                                    {% if key == product.id|slugify %}
+                                        {{ value }}
+                                    {% endif %}
+                                {% endfor %}<small/>
+                                <br/><br/>
 
                             {% endfor %}
                         
