@@ -27,16 +27,24 @@ def process_order(request):
         amount_paid = totals
 
         #Create an order
-        if request.user.if_authenticated:
+        if request.user.is_authenticated:
             #If logged in
             user = request.user
             #Create order
+            create_order = Order(user=user, full_name=full_name, email=email, shipping_address=shipping_address, amount_paid=amount_paid)
+            create_order.save()
+
+            messages.success(request, "Order Placed!")
+            return redirect('home')
+
         else:
             #Not logged in
-            pass
+            #Create order
+            create_order = Order(user=user, full_name=full_name, email=email, shipping_address=shipping_address, amount_paid=amount_paid)
+            create_order.save()
 
-        messages.success(request, "Order Placed!")
-        return redirect('home')
+            messages.success(request, "Order Placed!")
+            return redirect('home')
 
     else:
         messages.success(request, "Access Denied")
@@ -66,8 +74,6 @@ def billing_info(request):
             billing_form = BillingForm()
             return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST, "billing_form":billing_form })
 	
-        shipping_form = request.POST
-        return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_form":shipping_form})
     else:
         messages.success(request, "Access Denied")
         return redirect('home')
