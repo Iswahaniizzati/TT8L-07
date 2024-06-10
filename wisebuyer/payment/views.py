@@ -19,7 +19,7 @@ def billing_info(request):
         
         else:
             #Not logged in
-            pass
+            return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST })
 	
         shipping_form = request.POST
         return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_form":shipping_form})
