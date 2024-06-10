@@ -9,7 +9,10 @@ def process_order(request):
         #Get billing info from the last page
         payment_form = BillingForm(request.POST or None)
         #Get shipping session data
-
+        my_shipping = request.session.get('my_shipping')
+        print(my_shipping)
+        messages.success(request, "Order Placed!")
+        return redirect('home')
 
     else:
         messages.success(request, "Access Denied")
