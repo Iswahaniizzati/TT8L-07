@@ -10,7 +10,11 @@ def process_order(request):
         payment_form = BillingForm(request.POST or None)
         #Get shipping session data
         my_shipping = request.session.get('my_shipping')
-        print(my_shipping)
+        
+        #Create shipping address from session info
+        shipping_address = f"{my_shipping['shipping_address1']}\n{my_shipping['shipping_address2']}\n{my_shipping['shipping_postcode']}\n{my_shipping['shipping_city']}\n{my_shipping['shipping_state']}"
+        print(shipping_address)
+
         messages.success(request, "Order Placed!")
         return redirect('home')
 
