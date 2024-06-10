@@ -69,16 +69,9 @@
                   Billing Info
                 </div>
                 <div class="card-body">
-
-                    Name: {{ shipping_info.shipping_full_name }}<br/>
-                    Email: {{ shipping_info.shipping_email }}<br/>
-                    Address 1: {{ shipping_info.shipping_address1 }}<br/>
-                    Address 2: {{ shipping_info.shipping_address2 }}<br/>
-                    Postcode: {{ shipping_info.shipping_postcode }}<br/>
-                    City: {{ shipping_info.shipping_city }}<br/>
-                    State: {{ shipping_info.shipping_state }}<br/>
-                    <br/>
-                    <a href="{% url 'checkout' %}" class="btn btn-outline-secondary">Update Billing</a>                    
+                    <form method="POST" action="{% url 'home' %}">
+                        {% csrf_token %}
+                    {{ billing_form.as_p }}                 
                   
                 </div>
               </div>

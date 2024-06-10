@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from cart.cart import Cart
-from payment.forms import ShippingForm
+from payment.forms import ShippingForm, BillingForm
 from payment.models import ShippingAddress
 from django.contrib import messages
 
@@ -15,11 +15,14 @@ def billing_info(request):
 
         #Check to see if user is logged in
         if request.user.is_authenticated:
-            return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST })
+            #Get billing form
+            billing_form = BillingForm()
+            return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST, "billing_form":billing_form })
         
         else:
             #Not logged in
-            return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST })
+            billing_form = BillingForm()
+            return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST, "billing_form":billing_form })
 	
         shipping_form = request.POST
         return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_form":shipping_form})
