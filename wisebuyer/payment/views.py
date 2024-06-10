@@ -6,7 +6,10 @@ from django.contrib import messages
 
 def process_order(request):
     if request.POST:
+        #Get billing info from the last page
         payment_form = BillingForm(request.POST or None)
+        #Get shipping session data
+
 
     else:
         messages.success(request, "Access Denied")
@@ -20,6 +23,10 @@ def billing_info(request):
         cart_products = cart.get_prods
         quantities = cart.get_quants
         totals = cart.cart_total()
+
+        #Create a session with shipping info
+        my_shipping = request.POST
+        request.session['my_shipping'] = my_shipping
 
         #Check to see if user is logged in
         if request.user.is_authenticated:
