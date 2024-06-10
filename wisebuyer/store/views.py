@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, UserInfoForm
+from .forms import SignUpForm, UserInfoForm ,UpdateUserForm
 from payment.forms import ShippingForm
 from payment.models import ShippingAddress
 from django import forms
@@ -78,7 +78,20 @@ def product(request,pk):
 
 
 def update_user(request):
-    return render(request, 'update_user.html', {})
+    if request.user.is_authenticated:
+        current_user = User.objects.get(id=request.user.id)
+        user_form = UpdateUserForm(request.POST or None, instance=current_user)
+
+        if user_form.is_valid():
+            user_form.save()
+
+            login(request, current_user)
+            messages.success(request, "User Has Been Updated")
+            return redirect('home')
+        return render(request, "update_user.html",{'user_form':user_form})
+    else: 
+        messages.error(request, "You Must Be Logged In to Access That Page")
+        return redirect('home')
 
 def home(request):
     products = Product.objects.all()
