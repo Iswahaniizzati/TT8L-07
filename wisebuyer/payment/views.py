@@ -1,19 +1,39 @@
 from django.shortcuts import render, redirect
 from cart.cart import Cart
 from payment.forms import ShippingForm, BillingForm
-from payment.models import ShippingAddress
+from payment.models import ShippingAddress, Order, OrderItem
+from django.contrib.auth.models import User
 from django.contrib import messages
 
 def process_order(request):
     if request.POST:
+        #Get the cart
+        cart = Cart(request)
+        cart_products = cart.get_prods
+        quantities = cart.get_quants
+        totals = cart.cart_total()
+
         #Get billing info from the last page
         payment_form = BillingForm(request.POST or None)
         #Get shipping session data
         my_shipping = request.session.get('my_shipping')
+
+        #Gather order info
+        full_name = my_shipping['shipping_full_name']
+        email = my_shipping['shipping_email']
         
         #Create shipping address from session info
         shipping_address = f"{my_shipping['shipping_address1']}\n{my_shipping['shipping_address2']}\n{my_shipping['shipping_postcode']}\n{my_shipping['shipping_city']}\n{my_shipping['shipping_state']}"
-        print(shipping_address)
+        amount_paid = totals
+
+        #Create an order
+        if request.user.if_authenticated:
+            #If logged in
+            user = request.user
+            #Create order
+        else:
+            #Not logged in
+            pass
 
         messages.success(request, "Order Placed!")
         return redirect('home')
