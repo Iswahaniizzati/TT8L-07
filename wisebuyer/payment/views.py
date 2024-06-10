@@ -4,6 +4,13 @@ from payment.forms import ShippingForm, BillingForm
 from payment.models import ShippingAddress
 from django.contrib import messages
 
+def process_order(request):
+    if request.POST:
+
+    else:
+        messages.success(request, "Access Denied")
+        return redirect('home')
+
 
 def billing_info(request):
     if request.POST:
