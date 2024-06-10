@@ -6,6 +6,7 @@ from django.contrib import messages
 
 def process_order(request):
     if request.POST:
+        payment_form = BillingForm(request.POST or None)
 
     else:
         messages.success(request, "Access Denied")
