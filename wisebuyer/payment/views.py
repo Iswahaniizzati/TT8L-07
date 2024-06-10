@@ -8,8 +8,13 @@ def checkout(request):
     cart_products = cart.get_prods
     quantities = cart.get_quants
     totals = cart.cart_total()
-    return render (request, "payment/checkout.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals})
 
+    if request.user.is_authenticated:
+        #Checkout as logged in user
+        return render (request, "payment/checkout.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals})
+    else:
+        #Checkout as guest
+        return render (request, "payment/checkout.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals})
 
 
 def payment_success(request):
