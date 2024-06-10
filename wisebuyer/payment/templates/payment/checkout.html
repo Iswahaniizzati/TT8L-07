@@ -42,8 +42,19 @@
                             <br/><br/>
                             <a href="{% url 'cart_summary' %}" class="btn btn-sm btn-outline-secondary">Update Items</a>
                         </div>
-                      </div>
-<br/><br/>
+                    </div>
+            <br/><br/>
+            <div class="card">
+                <div class="card-header">
+                  Shipping Info
+                </div>
+                <div class="card-body">
+                  {{ shipping_form.as_p }}
+                  
+                </div>
+              </div>
+              
+
                 </div>
             </div>
         </div>
