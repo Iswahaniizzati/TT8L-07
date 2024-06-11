@@ -11,3 +11,8 @@ admin.site.register(OrderItem)
 #Create an orderitem inline
 class OrderItemInline(admin.StackedInline):
     model = OrderItem
+
+#Extend our order model
+class OrderAdmin(admin.ModelAdmin):
+    model = Order
+    inlines = [OrderItemInline]
