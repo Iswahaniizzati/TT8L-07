@@ -16,3 +16,9 @@ class OrderItemInline(admin.StackedInline):
 class OrderAdmin(admin.ModelAdmin):
     model = Order
     inlines = [OrderItemInline]
+
+#Unregister order model
+admin.site.unregister(Order)
+
+#Re-register order and order admin
+admin.site.register(Order, OrderAdmin)
