@@ -4,7 +4,7 @@ from payment.forms import ShippingForm, BillingForm
 from payment.models import ShippingAddress, Order, OrderItem
 from django.contrib.auth.models import User
 from django.contrib import messages
-
+from store.models import Product
 
 def process_order(request):
     if request.POST:
@@ -38,9 +38,16 @@ def process_order(request):
             #Add order items
             #Get the order ID
             order_id = create_order.pk
-            #Get product ID
+
+            #Get product info
             for product in cart_products():
+                #Get product ID
                 product_id = product_id
+                #Get product price
+                if product.is_sale:
+                    price = product.sale_price
+                else:
+                    price = product_price
 
             messages.success(request, "Order Placed!")
             return redirect('home')
