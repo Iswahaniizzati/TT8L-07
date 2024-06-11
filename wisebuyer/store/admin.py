@@ -16,7 +16,7 @@ class ProfileInline(admin.StackedInline):
 # Extend User Model
 class UserAdmin(admin.ModelAdmin):
     model = User
-    fields = ["username", "first_name", "last_name", "email"]
+    fields = ["username","email"]
     inlines = [ProfileInline]
     
 # Unregister the old way
