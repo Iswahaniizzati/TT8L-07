@@ -38,7 +38,12 @@
                                 <br/><br/>
 
                             {% endfor %}
+
                             Total: RM{{ totals }}
+                            <br/><br/>
+                            Shipping Fee: RM5
+                            <br/><br/>
+                            Total Payment: RM{{ end_total }}
                             <br/><br/>
                             <a href="{% url 'cart_summary' %}" class="btn btn-sm btn-outline-secondary">Update Items</a>
                         </div>

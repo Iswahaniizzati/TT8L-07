@@ -13,6 +13,8 @@ def process_order(request):
         cart_products = cart.get_prods
         quantities = cart.get_quants
         totals = cart.cart_total()
+        fee = 5
+        end_total = totals + fee
 
         #Get billing info from the last page
         payment_form = BillingForm(request.POST or None)
@@ -25,7 +27,7 @@ def process_order(request):
         
         #Create shipping address from session info
         shipping_address = f"{my_shipping['shipping_address1']}\n{my_shipping['shipping_address2']}\n{my_shipping['shipping_postcode']}\n{my_shipping['shipping_city']}\n{my_shipping['shipping_state']}"
-        amount_paid = totals
+        amount_paid = end_total
 
         #Create an order
         if request.user.is_authenticated:
@@ -118,6 +120,8 @@ def billing_info(request):
         cart_products = cart.get_prods
         quantities = cart.get_quants
         totals = cart.cart_total()
+        fee = 5
+        end_total = totals + fee
 
         #Create a session with shipping info
         my_shipping = request.POST
@@ -127,12 +131,12 @@ def billing_info(request):
         if request.user.is_authenticated:
             #Get billing form
             billing_form = BillingForm()
-            return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST, "billing_form":billing_form })
+            return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST, "billing_form":billing_form, "end_total":end_total })
         
         else:
             #Not logged in
             billing_form = BillingForm()
-            return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST, "billing_form":billing_form })
+            return render (request, "payment/billing_info.html", {"cart_products":cart_products, "quantities":quantities, "totals":totals, "shipping_info":request.POST, "billing_form":billing_form, "end_total":end_total })
 	
     else:
         messages.success(request, "Access Denied")
