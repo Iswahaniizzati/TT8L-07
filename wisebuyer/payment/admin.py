@@ -11,6 +11,7 @@ admin.site.register(OrderItem)
 #Create an orderitem inline
 class OrderItemInline(admin.StackedInline):
     model = OrderItem
+    extra = 0
 
 #Extend our order model
 class OrderAdmin(admin.ModelAdmin):
@@ -22,3 +23,4 @@ admin.site.unregister(Order)
 
 #Re-register order and order admin
 admin.site.register(Order, OrderAdmin)
+
