@@ -52,7 +52,8 @@ def process_order(request):
                 #Get quantity
                 for key, value in quantities().items():
                     if int(key) == product.id:
-                        #value
+                        #Create order item
+                        create_order_item = OrderItem(order_id=order_id, product_id=product_id, user=user, quantity=value, price=price)
 
             messages.success(request, "Order Placed!")
             return redirect('home')
