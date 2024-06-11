@@ -47,7 +47,7 @@ def process_order(request):
                 if product.is_sale:
                     price = product.sale_price
                 else:
-                    price = product_price
+                    price = product.price
 
                 #Get quantity
                 for key, value in quantities().items():
@@ -62,8 +62,29 @@ def process_order(request):
         else:
             #Not logged in
             #Create order
-            create_order = Order(user=user, full_name=full_name, email=email, shipping_address=shipping_address, amount_paid=amount_paid)
+            create_order = Order(full_name=full_name, email=email, shipping_address=shipping_address, amount_paid=amount_paid)
             create_order.save()
+
+            #Add order items
+            #Get the order ID
+            order_id = create_order.pk
+
+            #Get product info
+            for product in cart_products():
+                #Get product ID
+                product_id = product.id
+                #Get product price
+                if product.is_sale:
+                    price = product.sale_price
+                else:
+                    price = product.price
+
+                #Get quantity
+                for key, value in quantities().items():
+                    if int(key) == product.id:
+                        #Create order item
+                        create_order_item = OrderItem(order_id=order_id, product_id=product_id, quantity=value, price=price)
+                        create_order_item.save()
 
             messages.success(request, "Order Placed!")
             return redirect('home')
