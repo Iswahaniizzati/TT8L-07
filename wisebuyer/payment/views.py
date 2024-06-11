@@ -49,6 +49,11 @@ def process_order(request):
                 else:
                     price = product_price
 
+                #Get quantity
+                for key, value in quantities().items():
+                    if int(key) == product.id:
+                        #value
+
             messages.success(request, "Order Placed!")
             return redirect('home')
 
