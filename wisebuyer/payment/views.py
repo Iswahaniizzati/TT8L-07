@@ -5,6 +5,7 @@ from payment.models import ShippingAddress, Order, OrderItem
 from django.contrib.auth.models import User
 from django.contrib import messages
 
+
 def process_order(request):
     if request.POST:
         #Get the cart
@@ -37,6 +38,9 @@ def process_order(request):
             #Add order items
             #Get the order ID
             order_id = create_order.pk
+            #Get product ID
+            for product in cart_products():
+                product_id = product_id
 
             messages.success(request, "Order Placed!")
             return redirect('home')
