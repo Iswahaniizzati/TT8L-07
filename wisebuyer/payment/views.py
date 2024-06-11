@@ -4,7 +4,7 @@ from payment.forms import ShippingForm, BillingForm
 from payment.models import ShippingAddress, Order, OrderItem
 from django.contrib.auth.models import User
 from django.contrib import messages
-from store.models import Product
+from store.models import Product, Profile
 
 def process_order(request):
     if request.POST:
@@ -56,6 +56,17 @@ def process_order(request):
                         create_order_item = OrderItem(order_id=order_id, product_id=product_id, user=user, quantity=value, price=price)
                         create_order_item.save()
 
+            #Delete cart after order placed
+            for key in list(request.session.keys()):
+                if key == "session_key":
+                    #Delete the key
+                    del request.session[key]
+
+            #Delete cart from database
+            current_user = Profile.objects.filter(user__id=request.user.id)
+            #Delete shopping cart data in database
+            current_user.update(old_cart="")
+
             messages.success(request, "Order Placed!")
             return redirect('home')
 
@@ -85,6 +96,12 @@ def process_order(request):
                         #Create order item
                         create_order_item = OrderItem(order_id=order_id, product_id=product_id, quantity=value, price=price)
                         create_order_item.save()
+
+            #Delete cart after order placed
+            for key in list(request.session.keys()):
+                if key == "session_key":
+                    #Delete the key
+                    del request.session[key]
 
             messages.success(request, "Order Placed!")
             return redirect('home')
