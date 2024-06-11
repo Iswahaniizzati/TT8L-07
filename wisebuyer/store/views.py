@@ -132,27 +132,29 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request,user)
-
-            # Do some shopping cart stuff
-            current_user = Profile.objects.get(user__id=request.user.id)
-            # Get their saved cart from database
-            saved_cart = current_user.old_cart
-            # Convert database string to python dictionary
-            if saved_cart:
-                # Convert to dictionary using JSON
-                converted_cart = json.loads(saved_cart)
-                # Add the loaded cart dictionary to our sessions
-                # Get the cart
-                cart = Cart(request)
-                # Loop through the cart and add the items from the database
-                for key, value in converted_cart.items():
-                    cart.db_add(product=key, quantity=value)
-
+            try:
+                # Do some shopping cart stuff
+                current_user = Profile.objects.get(user__id=request.user.id)
+                # Get their saved cart from database
+                saved_cart = current_user.old_cart
+                # Convert database string to python dictionary
+                if saved_cart:
+                    # Convert to dictionary using JSON
+                    converted_cart = json.loads(saved_cart)
+                    # Add the loaded cart dictionary to our sessions
+                    # Get the cart
+                    cart = Cart(request)
+                    # Loop through the cart and add the items from the database
+                    for key, value in converted_cart.items():
+                        cart.db_add(product=key, quantity=value)
+            except Profile.DoesNotExist:
+                pass
+            
             messages.success(request,("You have been logged in"))
             return redirect('home')
         else :
-         messages.error(request,("There was an error, please try again"))
-         return redirect('login')
+            messages.error(request,("There was an error, please try again"))
+            return redirect('login')
     else:
         return render(request, 'login.html', {})
 
