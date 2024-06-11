@@ -64,6 +64,8 @@ def process_order(request):
 
             #Delete cart from database
             current_user = Profile.objects.filter(user__id=request.user.id)
+            #Delete shopping cart data in database
+            current_user.update(old_cart="")
 
             messages.success(request, "Order Placed!")
             return redirect('home')
