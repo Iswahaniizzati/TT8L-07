@@ -69,7 +69,7 @@ def process_order(request):
             #Delete shopping cart data in database
             current_user.update(old_cart="")
 
-            messages.success(request, "Order Placed!")
+            messages.success(request, "Order Placed! Kindly Prepare The Exact Amount For Payment Upon Delivery.")
             return redirect('home')
 
         else:
@@ -105,7 +105,7 @@ def process_order(request):
                     #Delete the key
                     del request.session[key]
 
-            messages.success(request, "Order Placed!")
+            messages.success(request, "Order Placed! Kindly Prepare The Exact Amount For Payment Upon Delivery.")
             return redirect('home')
 
     else:
