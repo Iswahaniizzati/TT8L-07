@@ -21,9 +21,9 @@
     Order {{ order.id }} - RM{{order.amount_paid}}
   </div>
   <div class="card-body">
-    Full Name:
-    Email:
-    Shipping Address:
+    Full Name: {{ order.full_name }} <br/><br/>
+    Email: {{ order.email }} <br/><br/>
+    Shipping Address: {{ order.shipping_address }} <br/><br/>
 
     Items:
   </div>
