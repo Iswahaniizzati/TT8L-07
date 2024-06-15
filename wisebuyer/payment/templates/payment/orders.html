@@ -5,7 +5,7 @@
 <header class="bg-dark py-1">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Order</h1>
+            <h1 class="display-4 fw-bolder">Order: {{ order.id }}</h1>
         </div>
     </div>
 </header>
@@ -15,8 +15,19 @@
         <center>
             <div class="col-8">
                 <br/><br/>
-{{ order }}
-{{ items }}
+
+<div class="card">
+  <div class="card-header">
+    Order {{ order.id }} - RM{{order.amount_paid}}
+  </div>
+  <div class="card-body">
+    Full Name:
+    Email:
+    Shipping Address:
+
+    Items:
+  </div>
+</div>
 
 <br/><br/>
             </div>
