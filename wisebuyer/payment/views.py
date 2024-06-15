@@ -6,6 +6,14 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from store.models import Product, Profile
 
+def orders(request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        return render (request, "payment/orders.html", {"":})
+
+    else:
+        messages.success(request, "Access Denied")
+        return redirect('home')
+
 def not_shipped_dash(request):
     if request.user.is_authenticated and request.user.is_superuser:
         orders = Order.objects.filter(shipped=False)
