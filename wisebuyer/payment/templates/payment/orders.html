@@ -12,33 +12,64 @@
 
 <div class="container">
     <div class="row">
-        <center>
-            <div class="col-8">
-                <br/><br/>
+        
+        <div class="col-md-6 offset-md-3">
+            <br/><br/>
 
-<div class="card">
-  <div class="card-header">
-    Order {{ order.id }} - RM{{order.amount_paid}}
-  </div>
-  <div class="card-body">
-    Full Name: {{ order.full_name }} <br/>
-    Email: {{ order.email }} <br/>
-    Shipping Address: {{ order.shipping_address }} <br/><br/>
-
-    {% for item in items %}
-    Items: {{ item.product }} <br/>
-    Quantity: {{ item.quantity }} <br/>
-    Unit Price: RM{{ item.price }} <br/><br/>
-    {% endfor %}
-
-    Total Price: RM{{ total }}
-
-  </div>
-</div>
-
+            <div class="card">
+                <div class="card-header">
+                    <center>
+                        <strong>Order {{ order.id }} - RM{{ order.amount_paid }}</strong>
+                    </center>
+                </div>
+                <div class="card-body">
+                    
+                    <div>
+                        <div style="display: inline-block; width: 100px;"><strong>Full Name</strong></div>
+                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">{{ order.full_name }}</div>
+                    </div>
+                    <div>
+                        <div style="display: inline-block; width: 100px;"><strong>Email</strong></div>
+                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">{{ order.email }}</div>
+                    </div>
+                    <div>
+                        <div style="display: inline-block; width: 100px;"><strong>Ship To</strong></div>
+                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">{{ order.shipping_address }}</div>
+                    </div><br>
+                
+                    {% for item in items %}
+                    <div>
+                        <div style="display: inline-block; width: 100px;"><strong>Items:</strong></div>
+                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">{{ item.product }}</div>
+                    </div>
+                    <div>
+                        <div style="display: inline-block; width: 100px;"><strong>Quantity:</strong></div>
+                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">{{ item.quantity }}</div>
+                    </div>
+                    <div>
+                        <div style="display: inline-block; width: 100px;"><strong>Unit Price:</strong></div>
+                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">RM{{ item.price }}</div>
+                    </div><br>
+                    {% endfor %}
+                
+                    <div>
+                        <div style="display: inline-block; width: 100px;"><strong>Total Price:</strong></div>
+                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">RM{{ total }}</div>
+                    </div>
+                    
+                </div>
+            </div>
+                
 <br/><br/>
             </div>
-        </center>
+        
     </div>
 </div>
 
