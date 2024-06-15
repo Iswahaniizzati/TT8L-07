@@ -6,9 +6,14 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from store.models import Product, Profile
 
-def orders(request):
+def orders(request, pk):
     if request.user.is_authenticated and request.user.is_superuser:
-        return render (request, "payment/orders.html", {"":})
+        #Get the order
+        order = Order.objects.get(id=pk)
+        #Get the order items
+        items = OrderItem.objects.filter(order=pk)
+        
+        return render(request, "payment/orders.html", {"order":order, "items":items})
 
     else:
         messages.success(request, "Access Denied")
@@ -17,7 +22,7 @@ def orders(request):
 def not_shipped_dash(request):
     if request.user.is_authenticated and request.user.is_superuser:
         orders = Order.objects.filter(shipped=False)
-        return render (request, "payment/not_shipped_dash.html", {"orders":orders})
+        return render(request, "payment/not_shipped_dash.html", {"orders":orders})
     else:
         messages.success(request, "Access Denied")
         return redirect('home')
@@ -25,7 +30,7 @@ def not_shipped_dash(request):
 def shipped_dash(request):
     if request.user.is_authenticated and request.user.is_superuser:
         orders = Order.objects.filter(shipped=True)
-        return render (request, "payment/shipped_dash.html", {"orders":orders})
+        return render(request, "payment/shipped_dash.html", {"orders":orders})
     else:
         messages.success(request, "Access Denied")
         return redirect('home')
