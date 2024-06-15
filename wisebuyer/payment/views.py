@@ -7,16 +7,18 @@ from django.contrib import messages
 from store.models import Product, Profile
 
 def not_shipped_dash(request):
-    return render (request, "payment/not_shipped_dash.html", {})
-    
-    messages.success(request, "Access Denied")
-    return redirect('home')
+    if request.user.is_authenticated and request.user.is_superuser:
+        return render (request, "payment/not_shipped_dash.html", {})
+    else:
+        messages.success(request, "Access Denied")
+        return redirect('home')
 
 def shipped_dash(request):
-    return render (request, "payment/shipped_dash.html", {})
-
-    messages.success(request, "Access Denied")
-    return redirect('home')
+    if request.user.is_authenticated and request.user.is_superuser:
+        return render (request, "payment/shipped_dash.html", {})
+    else:
+        messages.success(request, "Access Denied")
+        return redirect('home')
 
 def process_order(request):
     if request.POST:
