@@ -16,8 +16,25 @@ def orders(request, pk):
         if order.shipped==True:
             ship_status = "(Shipped)"
         else:
-            ship_status = "(Not Shipped)"
+            ship_status = "(Unshipped)"
+
+        if request.POST:
+            status = request.POST['shipping_status']
+            #Check if true or false
+            if status == "true":
+                #Get the order
+                order = Order.objects.filter(id=pk)
+                #Update the status
+                order.update(shipped=True)
+            else:
+                #Get the order
+                order = Order.objects.filter(id=pk)
+                #Update the status
+                order.update(shipped=False)
+            messages.success(request, "Shipping Status Updated!")
+            return redirect('home')
             
+
         return render(request, "payment/orders.html", {"order":order, "items":items, "total":order.amount_paid - 5, "ship_status":ship_status})
 
     else:
