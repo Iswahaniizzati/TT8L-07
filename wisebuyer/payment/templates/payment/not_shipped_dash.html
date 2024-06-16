@@ -5,7 +5,7 @@
 <header class="bg-dark py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
-            <h1 class="display-4 fw-bolder">Unshipped Items</h1>
+            <h1 class="display-5 fw-bolder">Unshipped Orders</h1>
         </div>
     </div>
 </header>
@@ -16,12 +16,14 @@
             <div class="col-8">
                 <br/><br/>
 
+<div style="text-align: center;">                
 <table class="table table-striped table-bordered table-hover">
     <thead class="table-dark">
       <tr>
         <th scope="col">Order ID</th>
         <th scope="col">Price</th>
         <th scope="col">Customer Email</th>
+        <th scope="col">Update Status</th>
       </tr>
     </thead>
     <tbody>
@@ -30,10 +32,21 @@
         <td><a href="{% url 'orders' item.id %}">{{ item.id }}</a></td>
         <td>RM{{ item.amount_paid }}</td>
         <td>{{ item.email }}</td>
+        <td>
+          <div style="text-align: center;">
+          <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="shipping_status" value="true">
+            <input type="hidden" name="num" value={{item.id}}>
+            <button type="Submit" class="btn btn-success btn-sm">Mark Shipped</button>
+          </form>
+          </div>
+        </td>
       </tr>
       {% endfor %}
     </tbody>
-  </table>
+</table>
+</div>
 
 <br/><br/>
             </div>

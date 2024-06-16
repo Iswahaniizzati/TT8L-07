@@ -6,6 +6,7 @@
     <div class="container px-4 px-lg-5 my-5">
         <div class="text-center text-white">
             <h1 class="display-4 fw-bolder">Order: {{ order.id }}</h1>
+            <h2> {{ ship_status }} </h2>
         </div>
     </div>
 </header>
@@ -63,10 +64,28 @@
                         <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
                         <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">RM{{ total }}</div>
                     </div>
-                    
+              
                 </div>
             </div>
-                
+
+            <br/>
+            <div style="text-align: right;">
+                {% if not order.shipped %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="shipping_status" value="true">
+                    <button type="Submit" class="btn btn-success">Mark as Shipped</button>
+                </form>
+
+                {% else %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="shipping_status" value="false">
+                    <button type="Submit" class="btn btn-danger">Mark as Unshipped</button>
+                </form>
+
+                {% endif %}
+            </div>  
 <br/><br/>
             </div>
         
