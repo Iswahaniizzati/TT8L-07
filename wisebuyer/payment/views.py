@@ -12,7 +12,13 @@ def orders(request, pk):
         order = Order.objects.get(id=pk)
         #Get the order items
         items = OrderItem.objects.filter(order=pk)
-        return render(request, "payment/orders.html", {"order":order, "items":items, "total":order.amount_paid - 5})
+
+        if order.shipped==True:
+            ship_status = "(Shipped)"
+        else:
+            ship_status = "(Not Shipped)"
+            
+        return render(request, "payment/orders.html", {"order":order, "items":items, "total":order.amount_paid - 5, "ship_status":ship_status})
 
     else:
         messages.success(request, "Access Denied")
