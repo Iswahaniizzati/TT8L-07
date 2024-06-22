@@ -26,42 +26,42 @@
                 <div class="card-body">
                     
                     <div>
-                        <div style="display: inline-block; width: 100px;"><strong>Full Name</strong></div>
-                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 100px; margin-left: 1px; vertical-align: top;"><strong>Full Name</strong></div>
+                        <div style="display: inline-block; width: 30px; margin-left: 1px; vertical-align: top;"><strong>:</strong></div>
                         <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">{{ order.full_name }}</div>
                     </div>
                     <div>
-                        <div style="display: inline-block; width: 100px;"><strong>Email</strong></div>
-                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 100px; margin-left: 1px; vertical-align: top;"><strong>Email</strong></div>
+                        <div style="display: inline-block; width: 30px; margin-left: 1px; vertical-align: top;"><strong>:</strong></div>
                         <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">{{ order.email }}</div>
                     </div>
                     <div>
-                        <div style="display: inline-block; width: 100px;"><strong>Ship To</strong></div>
-                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 100px; margin-left: 1px; vertical-align: top;"><strong>Ship To</strong></div>
+                        <div style="display: inline-block; width: 30px; margin-left: 1px; vertical-align: top;"><strong>:</strong></div>
                         <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">{{ order.shipping_address }}</div>
                     </div><br>
                 
                     {% for item in items %}
                     <div>
-                        <div style="display: inline-block; width: 100px;"><strong>Items</strong></div>
-                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 100px; margin-left: 1px; vertical-align: top;"><strong>Items</strong></div>
+                        <div style="display: inline-block; width: 30px; margin-left: 1px; vertical-align: top;"><strong>:</strong></div>
                         <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">{{ item.product }}</div>
                     </div>
                     <div>
-                        <div style="display: inline-block; width: 100px;"><strong>Quantity</strong></div>
-                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 100px; margin-left: 1px; vertical-align: top;"><strong>Quantity</strong></div>
+                        <div style="display: inline-block; width: 30px; margin-left: 1px; vertical-align: top;"><strong>:</strong></div>
                         <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">{{ item.quantity }}</div>
                     </div>
                     <div>
-                        <div style="display: inline-block; width: 100px;"><strong>Unit Price</strong></div>
-                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 100px; margin-left: 1px; vertical-align: top;"><strong>Unit Price</strong></div>
+                        <div style="display: inline-block; width: 30px; margin-left: 1px; vertical-align: top;"><strong>:</strong></div>
                         <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">RM{{ item.price }}</div>
                     </div><br>
                     {% endfor %}
                 
                     <div>
-                        <div style="display: inline-block; width: 100px;"><strong>Total Price</strong></div>
-                        <div style="display: inline-block; width: 50px;"><strong>:</strong></div>
+                        <div style="display: inline-block; width: 100px; margin-left: 1px; vertical-align: top;"><strong>Total Price</strong></div>
+                        <div style="display: inline-block; width: 30px; margin-left: 1px; vertical-align: top;"><strong>:</strong></div>
                         <div style="display: inline-block; width: 400px; margin-left: 1px; vertical-align: top;">RM{{ total }}</div>
                     </div>
               
