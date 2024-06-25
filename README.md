@@ -1,4 +1,5 @@
-Project Name: WiseBuyer
+Project Name: Wisebuyer https://tt8l-07-production.up.railway.app/
+
 Installation Instructions:
 1. Install Python (Visit https://www.python.org/downloads/ to download and install)
 2. Install Django (Run pip install django on your command line interface)
