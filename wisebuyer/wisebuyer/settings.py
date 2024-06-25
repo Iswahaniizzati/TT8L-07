@@ -17,7 +17,8 @@ SECRET_KEY = 'django-insecure-#y)8_mdpmeyh0z7(wjag4kgjl0bl!%#rj(^zd#e@^f@o)fvw(_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://tt8l-07-production.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://tt8l-07-production.up.railway.app']
 
 
 # Application definition
@@ -32,6 +33,7 @@ INSTALLED_APPS = [
     'store',
     'payment',
     'cart',
+    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -42,6 +44,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'wisebuyer.urls'
@@ -120,6 +123,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = ['static/']
 
+#White noise static
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
