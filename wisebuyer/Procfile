@@ -1,1 +1,1 @@
-web: gunicorn wisebuyer.wsgi
+web: gunicorn wisebuyer.wsgi --log-file - 
